@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Firebase Auth x Microsoft AzureAD</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+    </style>
+
+    <script src="/__/firebase/6.1.1/firebase-app.js"></script>
+    <script src="/__/firebase/6.1.1/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+    <script src="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.0.0/firebaseui.css" />
+  </head>
+  <body>
+    <h1>Firebase Auth x Microsoft AzureAD 認証連携テスト</h1>
+    <div id="firebaseui-auth-container"></div>
+    <script>
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      ui.start('#firebaseui-auth-container', {
+        signInSuccessUrl: 'done.html',
+        // signInFlow: 'popup',
+        signInOptions: [
+          {
+            provider: 'microsoft.com',
+            providerName: 'Microsoft',
+            buttonColor: '#2F2F2F',
+            iconUrl: 'https://www.gstatic.com/mobilesdk/170404_mobilesdk/auth_service_mslive.svg',
+            loginHintKey: 'login_hint',
+            customParameters: {
+              prompt: 'consent',
+              tenant: 'c18a7549-1f50-471f-9492-8a43396f5f21'
+            }
+          }
+        ]
+      });
+    </script>
+  </body>
+</html>
